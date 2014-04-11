@@ -1,43 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 
 namespace GamePlayer.Game
 {
     public class SuperRegions : IEnumerable<SuperRegion>
     {
-        private readonly IDictionary<int, SuperRegion> _superRegions;
+        private readonly Dictionary<int, SuperRegion> _superRegions = new Dictionary<int,SuperRegion>();
 
-        public SuperRegions()
-        {
-            _superRegions = new Dictionary<int, SuperRegion>();
-        }
+        public int Count { get { return _superRegions.Values.Count; } }
 
-        public SuperRegion this[int id]
+        public SuperRegion this[int superRegionId]
         {
-            get
-            {
-                try
-                {
-                    return _superRegions[id];
-                }
-                catch (KeyNotFoundException ex)
-                {
-                    throw new GameException("SuperRegion does not exist", ex);
-                }
-            }
-        }
-
-        public void AddSuperRegion(SuperRegion superRegion)
-        {
-            try
-            {
-                _superRegions.Add(superRegion.Id, superRegion);
-            }
-            catch (ArgumentException ex)
-            {
-                throw new GameException("SuperRegion already exists");
-            }
+            get { return _superRegions[superRegionId]; }
         }
 
         public IEnumerator<SuperRegion> GetEnumerator()
@@ -48,6 +22,14 @@ namespace GamePlayer.Game
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public void Add(SuperRegion superRegion)
+        {
+            if (_superRegions.ContainsKey(superRegion.Id))
+                throw new GameException("SuperRegion already exists");
+
+            _superRegions.Add(superRegion.Id, superRegion);
         }
     }
 }

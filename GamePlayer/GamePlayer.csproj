@@ -42,16 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Botting\Commands\CommandAttribute.cs" />
-    <Compile Include="Botting\Commands\CommandManager.cs" />
-    <Compile Include="Botting\Commands\CommandResponse.cs" />
-    <Compile Include="Botting\Commands\CommandAction.cs" />
     <Compile Include="Botting\Bot.cs" />
-    <Compile Include="Botting\Commands\SetupMapCommand.cs" />
-    <Compile Include="Botting\Commands\ICommand.cs" />
-    <Compile Include="Botting\Commands\QuitCommand.cs" />
-    <Compile Include="Game\SuperRegions.cs" />
+    <Compile Include="Botting\StupidBotting\StupidBot.cs" />
+    <Compile Include="Botting\IBot.cs" />
+    <Compile Include="Engine\Commands\CommandAttribute.cs" />
+    <Compile Include="Engine\Commands\CommandManager.cs" />
+    <Compile Include="Engine\Commands\CommandResponse.cs" />
+    <Compile Include="Engine\Commands\CommandAction.cs" />
+    <Compile Include="Engine\Commands\PickStartingRegionsCommand.cs" />
+    <Compile Include="Engine\Commands\GoCommand.cs" />
+    <Compile Include="Engine\Commands\UpdateMapCommand.cs" />
+    <Compile Include="Engine\GameplayEngine.cs" />
+    <Compile Include="Engine\Commands\SettingsCommand.cs" />
+    <Compile Include="Engine\Commands\SetupMapCommand.cs" />
+    <Compile Include="Engine\Commands\ICommand.cs" />
+    <Compile Include="Engine\Commands\QuitCommand.cs" />
     <Compile Include="Game\Regions.cs" />
+    <Compile Include="Game\SuperRegions.cs" />
     <Compile Include="Game\Players.cs" />
     <Compile Include="Game\GameException.cs" />
     <Compile Include="Game\GameState.cs" />
@@ -65,9 +72,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Botting\Logic\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

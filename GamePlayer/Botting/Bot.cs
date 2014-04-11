@@ -1,20 +1,14 @@
-﻿using GamePlayer.Botting.Commands;
-using GamePlayer.Game;
+﻿using GamePlayer.Game;
 
 namespace GamePlayer.Botting
 {
-    public class Bot
+    public abstract class Bot
     {
-        private readonly CommandManager _commandManager;
-
-        public Bot(GameState game)
+        private string _botName;
+        public string BotName
         {
-            _commandManager = new CommandManager(game);
-        }
-
-        public CommandResponse ProcessCommand(string command)
-        {
-            return (_commandManager.HandleCommand(command));
+            get { return _botName ?? "The No-Named Bot"; }
+            set { _botName = value; }
         }
     }
 }

@@ -1,4 +1,4 @@
-namespace GamePlayer.Botting.Commands
+namespace GamePlayer.Engine.Commands
 {
     public enum CommandAction
     {

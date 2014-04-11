@@ -6,9 +6,9 @@ namespace GamePlayer.Game
 {
     public class Players : IEnumerable<Player>
     {
-        private readonly Dictionary<int, Player> _players = new Dictionary<int, Player>();
+        private readonly Dictionary<string, Player> _players = new Dictionary<string, Player>();
 
-        public Player this[int id]
+        public Player this[string id]
         {
             get
             {
@@ -23,7 +23,7 @@ namespace GamePlayer.Game
             }
         }
 
-        public void AddPlayer(Player player)
+        public void Add(Player player)
         {
             try
             {

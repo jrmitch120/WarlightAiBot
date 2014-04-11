@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
+using GamePlayer.Botting;
 using GamePlayer.Game;
 
-namespace GamePlayer.Botting.Commands
+namespace GamePlayer.Engine.Commands
 {
     public class CommandManager
     {

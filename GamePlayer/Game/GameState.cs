@@ -1,13 +1,27 @@
-﻿namespace GamePlayer.Game
+﻿using GamePlayer.Botting;
+using GamePlayer.Botting.StupidBotting;
+
+namespace GamePlayer.Game
 {
-    public class GameState 
+    public class GameState
     {
         public readonly Map Map = new Map();
-        public readonly Players Players = new Players();
 
-        public GameState()
+        public readonly Players Opponents = new Players();
+
+        public Player OurPlayer { get; set; }
+
+        private IBot _ai;
+        public IBot Bot
         {
-            
+            get { return _ai ?? new StupidBot(); }
+            set { _ai = value; }
+        }
+        public int Turn { get; private set; }
+
+        public void BeginNewTurn()
+        {
+            Turn++;
         }
     }
 }

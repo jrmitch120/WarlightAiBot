@@ -1,11 +1,12 @@
 ﻿using System;
 
-namespace GamePlayer.Botting.Commands
+namespace GamePlayer.Engine.Commands
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
     public sealed class CommandAttribute : Attribute
     {
-        public string CommandName { get; private set; }
+        public readonly string CommandName;
+
         public string Description { get; set; }
         
         public CommandAttribute(string commandName, string description)

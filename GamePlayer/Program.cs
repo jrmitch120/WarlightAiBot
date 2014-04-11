@@ -1,7 +1,8 @@
 ﻿using System;
-using GamePlayer.Botting;
-using GamePlayer.Botting.Commands;
-using GamePlayer.Game;
+using System.IO;
+using GamePlayer.Botting.StupidBotting;
+using GamePlayer.Engine;
+using GamePlayer.Engine.Commands;
 
 namespace GamePlayer
 {
@@ -9,20 +10,31 @@ namespace GamePlayer
     {
         static void Main(string[] args)
         {
-            var gameBot = new Bot(new GameState());
+            var engine = new GameplayEngine(new StupidBot());
+
+            var inputBuffer = new byte[1024];
+            Stream inputStream = Console.OpenStandardInput(inputBuffer.Length);
+            Console.SetIn(new StreamReader(inputStream, Console.InputEncoding, false, inputBuffer.Length));
 
             while (true)
             {
-                CommandResponse response = gameBot.ProcessCommand(Console.ReadLine());
+                try
+                {
+                    CommandResponse response = engine.ProcessCommand(Console.ReadLine());
 
-                if (response.Action == CommandAction.Quit)
-                    Environment.Exit(0);
+                    if (response.Action == CommandAction.Quit)
+                        Environment.Exit(0);
 
-                if (response.Action == CommandAction.Error)
-                    Console.Error.WriteLine(response.ResponseData);
-                
-                else if (response.Action == CommandAction.SendData)
-                    Console.WriteLine(response.ResponseData);
+                    if (response.Action == CommandAction.Error)
+                        Console.Error.WriteLine(response.ResponseData);
+
+                    else if (response.Action == CommandAction.SendData)
+                        Console.WriteLine(response.ResponseData);
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.Message + " : " + ex.StackTrace); 
+                }
             }
         }
     }

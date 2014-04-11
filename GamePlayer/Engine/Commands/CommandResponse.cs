@@ -1,8 +1,9 @@
-namespace GamePlayer.Botting.Commands
+namespace GamePlayer.Engine.Commands
 {
     public class CommandResponse
     {
-        public CommandAction Action { get; private set; }
+        public readonly CommandAction Action;
+        
         public string ResponseData { get; private set; }
 
         public CommandResponse(CommandAction botAction)

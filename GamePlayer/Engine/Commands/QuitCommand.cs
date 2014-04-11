@@ -1,8 +1,8 @@
 ﻿using GamePlayer.Game;
 
-namespace GamePlayer.Botting.Commands
+namespace GamePlayer.Engine.Commands
 {
-    [CommandAttribute("quit", "Quit the bot program")]
+    [CommandAttribute("quit", "Quit the program")]
     public class QuitCommand : ICommand
     {
         public CommandResponse Execute(GameState game, string[] args)

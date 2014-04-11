@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using GamePlayer.Game;
 
-namespace GamePlayer.Botting.Commands
+namespace GamePlayer.Engine.Commands
 {
     [InheritedExport]
     public interface ICommand
