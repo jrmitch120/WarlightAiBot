@@ -10,7 +10,7 @@ namespace GamePlayer.Engine.Commands
             switch (args[0])
             {
                 case "your_bot":
-                    game.OurPlayer = new Player(args[1], friendly: true);
+                    game.Bot.BotPlayer = new Player(args[1], friendly: true);
                     break;
 
                 case "opponent_bot":
@@ -19,7 +19,7 @@ namespace GamePlayer.Engine.Commands
 
                 case "starting_armies":
                     game.BeginNewTurn();
-                    game.OurPlayer.DeployableArmies = int.Parse(args[1]);
+                    game.Bot.BotPlayer.DeployableArmies = int.Parse(args[1]);
                     break;
             }
 

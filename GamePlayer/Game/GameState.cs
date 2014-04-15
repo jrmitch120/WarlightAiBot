@@ -9,8 +9,6 @@ namespace GamePlayer.Game
 
         public readonly Players Opponents = new Players();
 
-        public Player OurPlayer { get; set; }
-
         private IBot _ai;
         public IBot Bot
         {

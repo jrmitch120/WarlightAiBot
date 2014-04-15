@@ -1,17 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using GamePlayer.Infrastructure;
 
 namespace GamePlayer.Game
 {
-    public class Region
+    public class Region : IUniqueId
     {
-        public readonly int Id;
-        public readonly Regions Neighbors = new Regions();
+        public int Id { get; private set; }
 
         public SuperRegion SuperRegion { get; private set; }
+
         public Player Owner { get; set; }
         public int Armies { get; set; }
+        public int MaxAttackTransfer { get { return Armies - 1; } }
         public bool IsVisible { get; set; }
+
+        public readonly Regions Neighbors = new Regions();
 
         public bool IsBoarderRegion
         {
@@ -28,6 +33,21 @@ namespace GamePlayer.Game
             SuperRegion = superRegion;
             
             superRegion.Regions.Add(this);
+        }
+
+        public IEnumerable<Region> BoardingEnemies()
+        {
+            return (Neighbors.Where(r => r.Owner != Owner && r.Owner != null && !Owner.Friendly));
+        }
+
+        public IEnumerable<Region> BoardingNeutral()
+        {
+            return (Neighbors.Where(p => p.Owner == null));
+        }
+
+        public IEnumerable<Region> BoardingAllUncontrolled()
+        {
+            return (BoardingEnemies().Union(BoardingNeutral()));
         }
     }
 }

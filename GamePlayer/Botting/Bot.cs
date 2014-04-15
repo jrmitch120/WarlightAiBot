@@ -4,6 +4,8 @@ namespace GamePlayer.Botting
 {
     public abstract class Bot
     {
+        public Player BotPlayer { get; set; }
+
         private string _botName;
         public string BotName
         {

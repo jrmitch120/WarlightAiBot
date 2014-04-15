@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GamePlayer.Infrastructure;
 
 namespace GamePlayer.Game
 {
-    public class SuperRegion
+    public class SuperRegion : IUniqueId
     {
-        public readonly Regions Regions = new Regions();
-
         public int Id { get; private set; }
-        public int Bonus { get; set; }
+        public int Bonus { get; private set; }
+
+        public readonly Regions Regions = new Regions();
 
         public IEnumerable<Region> BoarderRegions
         {

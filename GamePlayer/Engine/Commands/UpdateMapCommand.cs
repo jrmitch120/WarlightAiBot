@@ -24,8 +24,8 @@ namespace GamePlayer.Engine.Commands
 
                 if (ownerId == "neutral")
                     region.Owner = null;
-                else 
-                    region.Owner = ownerId == game.OurPlayer.Id ? game.OurPlayer : game.Opponents[args[i + 1]];
+                else
+                    region.Owner = ownerId == game.Bot.BotPlayer.Id ? game.Bot.BotPlayer : game.Opponents[args[i + 1]];
 
                 updatedRegions.Add(region);
             }
