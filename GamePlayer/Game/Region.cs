@@ -13,7 +13,7 @@ namespace GamePlayer.Game
 
         public Player Owner { get; set; }
         public int Armies { get; set; }
-        public int MaxAttackTransfer { get { return Armies - 1; } }
+        public int MaxAttackTransfer { get { return Armies - GameSettings.MinimumArmies; } }
         public bool IsVisible { get; set; }
 
         public readonly Regions Neighbors = new Regions();

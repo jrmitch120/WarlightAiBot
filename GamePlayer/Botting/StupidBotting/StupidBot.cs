@@ -16,7 +16,7 @@ namespace GamePlayer.Botting.StupidBotting
 
         public Regions PickStartingRegions(Map map, Regions availableOptions)
         {
-            int numberToPick = availableOptions.Count > 6 ? 6 : availableOptions.Count;
+            int numberToPick = availableOptions.Count > GameSettings.StartingRegions ? GameSettings.StartingRegions : availableOptions.Count;
 
             var selectedRegions = new Regions();
 
@@ -28,11 +28,11 @@ namespace GamePlayer.Botting.StupidBotting
             return selectedRegions;
         }
 
-        public ArmyPlacements PlaceArmies(Map map)
+        public IEnumerable<ArmyPlacement> PlaceArmies(Map map)
         {
-            var armyPlacements = new ArmyPlacements();
+            var armyPlacements = new List<ArmyPlacement>();
 
-            // Sgt. Stupid dumps everybody to the first region we own that's on a battle front.  No battlefront, means you won the game, but dump then on anything then.
+            // Sgt. Stupid dumps everybody to the first region we own that's on a battle front.  No battlefront, means you won the game, but dump them on anything then.
             Region firstRegion =
                 map.Regions.FirstOrDefault(r => r.Owner == BotPlayer && r.BoardingUncontrolled().Any()) ??
                 map.Regions.First(r => r.Owner == BotPlayer);

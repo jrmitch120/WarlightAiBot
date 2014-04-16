@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Botting\AttackTransfer.cs" />
-    <Compile Include="Botting\ArmyPlacements.cs" />
     <Compile Include="Botting\ArmyPlacement.cs" />
     <Compile Include="Botting\Bot.cs" />
     <Compile Include="Botting\StupidBotting\StupidBot.cs" />
@@ -63,6 +62,7 @@
     <Compile Include="Engine\Commands\QuitCommand.cs" />
     <Compile Include="Game\RegionExtensions.cs" />
     <Compile Include="Game\Regions.cs" />
+    <Compile Include="Game\Settings.cs" />
     <Compile Include="Game\SuperRegions.cs" />
     <Compile Include="Game\Players.cs" />
     <Compile Include="Game\GameException.cs" />

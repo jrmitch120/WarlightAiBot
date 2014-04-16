@@ -11,6 +11,6 @@ namespace GamePlayer.Botting
 
         IEnumerable<AttackTransfer> AttackTransfer(Map map);
         Regions PickStartingRegions(Map map, Regions availableOptions);
-        ArmyPlacements PlaceArmies(Map map);
+        IEnumerable<ArmyPlacement> PlaceArmies(Map map);
     }
 }

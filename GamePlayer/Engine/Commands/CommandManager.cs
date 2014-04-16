@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
-using GamePlayer.Botting;
 using GamePlayer.Game;
 
 namespace GamePlayer.Engine.Commands

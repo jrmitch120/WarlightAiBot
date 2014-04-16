@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using GamePlayer.Game;
+﻿using GamePlayer.Game;
 
 namespace GamePlayer.Botting
 {
