@@ -3,7 +3,7 @@
 namespace GamePlayer.Engine.Commands
 {
     [CommandAttribute("opponent_moves", "Listing of opponent's moves")]
-    public class OpponentsMoveCommand : ICommand
+    public class OpponentMovesCommand : ICommand
     {
         public CommandResponse Execute(GameState game, string[] args)
         {

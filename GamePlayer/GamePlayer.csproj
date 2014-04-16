@@ -52,7 +52,7 @@
     <Compile Include="Engine\Commands\CommandManager.cs" />
     <Compile Include="Engine\Commands\CommandResponse.cs" />
     <Compile Include="Engine\Commands\CommandAction.cs" />
-    <Compile Include="Engine\Commands\OpponentsMoveCommand.cs" />
+    <Compile Include="Engine\Commands\OpponentMovesCommand.cs" />
     <Compile Include="Engine\Commands\PickStartingRegionsCommand.cs" />
     <Compile Include="Engine\Commands\GoCommand.cs" />
     <Compile Include="Engine\Commands\UpdateMapCommand.cs" />
