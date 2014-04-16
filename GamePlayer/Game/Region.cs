@@ -37,15 +37,15 @@ namespace GamePlayer.Game
 
         public IEnumerable<Region> BoardingEnemies()
         {
-            return (Neighbors.Where(r => r.Owner != Owner && r.Owner != null && !Owner.Friendly));
+            return (Neighbors.Where(r => r.Owner != Owner && r.Owner != null && !r.Owner.Friendly));
         }
 
         public IEnumerable<Region> BoardingNeutral()
         {
-            return (Neighbors.Where(p => p.Owner == null));
+            return (Neighbors.Where(r => r.Owner == null));
         }
 
-        public IEnumerable<Region> BoardingAllUncontrolled()
+        public IEnumerable<Region> BoardingUncontrolled()
         {
             return (BoardingEnemies().Union(BoardingNeutral()));
         }
