@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using GamePlayer.Botting.Common;
 using GamePlayer.Botting.Common.Scoring;
 using GamePlayer.Game;
 using System.Linq;
@@ -37,7 +36,7 @@ namespace GamePlayer.Botting.CptnCompetent
             return pickList;
         }
 
-        public ArmyPlacements PlaceArmies(Map map)
+        public IEnumerable<ArmyPlacement> PlaceArmies(Map map)
         {
             throw new NotImplementedException();
         }
