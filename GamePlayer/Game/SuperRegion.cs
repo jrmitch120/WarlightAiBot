@@ -11,9 +11,9 @@ namespace GamePlayer.Game
 
         public readonly Regions Regions = new Regions();
 
-        public IEnumerable<Region> BoarderRegions
+        public IEnumerable<Region> BorderRegions
         {
-            get { return Regions.Where(r => r.IsBoarderRegion); }
+            get { return Regions.Where(r => r.IsBorderRegion); }
         }
 
         public SuperRegion(int id, int bonus)

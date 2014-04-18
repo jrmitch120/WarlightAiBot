@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using GamePlayer.Botting.StupidBotting;
+using GamePlayer.Botting.CptnCompetent;
+using GamePlayer.Botting.SgtStupid;
 using GamePlayer.Engine;
 using GamePlayer.Engine.Commands;
 
@@ -10,7 +11,8 @@ namespace GamePlayer
     {
         static void Main(string[] args)
         {
-            var engine = new GameplayEngine(new StupidBot());
+            //var engine = new GameplayEngine(new SgtStupidBot());
+            var engine = new GameplayEngine(new CptnCompetentBot());
 
             var inputBuffer = new byte[1024];
             Stream inputStream = Console.OpenStandardInput(inputBuffer.Length);

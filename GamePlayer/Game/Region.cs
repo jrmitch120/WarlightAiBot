@@ -18,7 +18,7 @@ namespace GamePlayer.Game
 
         public readonly Regions Neighbors = new Regions();
 
-        public bool IsBoarderRegion
+        public bool IsBorderRegion
         {
             get
             {
@@ -48,6 +48,11 @@ namespace GamePlayer.Game
         public IEnumerable<Region> BoardingAllUncontrolled()
         {
             return (BoardingEnemies().Union(BoardingNeutral()));
+        }
+
+        public IEnumerable<SuperRegion> BoardingSuperRegions()
+        {
+            return (Neighbors.Select(r => r.SuperRegion).Distinct());
         }
     }
 }

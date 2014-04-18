@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using GamePlayer.Game;
 
-namespace GamePlayer.Botting.StupidBotting
+namespace GamePlayer.Botting.SgtStupid
 {
-    public class StupidBot : Bot, IBot
+    public class SgtStupidBot : Bot, IBot
     {
         private readonly Random _random = new Random();
 
-        public StupidBot()
+        public SgtStupidBot()
         {
             BotName = "Sgt. Stupid";
         }

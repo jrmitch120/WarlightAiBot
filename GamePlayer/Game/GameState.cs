@@ -1,5 +1,5 @@
 ﻿using GamePlayer.Botting;
-using GamePlayer.Botting.StupidBotting;
+using GamePlayer.Botting.SgtStupid;
 
 namespace GamePlayer.Game
 {
@@ -12,7 +12,7 @@ namespace GamePlayer.Game
         private IBot _ai;
         public IBot Bot
         {
-            get { return _ai ?? new StupidBot(); }
+            get { return _ai ?? new SgtStupidBot(); }
             set { _ai = value; }
         }
         public int Turn { get; private set; }
