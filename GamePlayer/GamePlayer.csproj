@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Botting\AttackTransfer.cs" />
-    <Compile Include="Botting\ArmyPlacements.cs" />
     <Compile Include="Botting\ArmyPlacement.cs" />
     <Compile Include="Botting\Bot.cs" />
     <Compile Include="Botting\Common\Scoring\Deployment.cs" />
@@ -61,6 +60,7 @@
     <Compile Include="Engine\Commands\CommandManager.cs" />
     <Compile Include="Engine\Commands\CommandResponse.cs" />
     <Compile Include="Engine\Commands\CommandAction.cs" />
+    <Compile Include="Engine\Commands\OpponentMovesCommand.cs" />
     <Compile Include="Engine\Commands\PickStartingRegionsCommand.cs" />
     <Compile Include="Engine\Commands\GoCommand.cs" />
     <Compile Include="Engine\Commands\UpdateMapCommand.cs" />
@@ -71,6 +71,7 @@
     <Compile Include="Engine\Commands\QuitCommand.cs" />
     <Compile Include="Game\RegionExtensions.cs" />
     <Compile Include="Game\Regions.cs" />
+    <Compile Include="Game\Settings.cs" />
     <Compile Include="Game\SuperRegions.cs" />
     <Compile Include="Game\Players.cs" />
     <Compile Include="Game\GameException.cs" />

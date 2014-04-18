@@ -1,5 +1,4 @@
 ﻿using GamePlayer.Game;
-using GamePlayer.Infrastructure;
 
 namespace GamePlayer.Botting
 {

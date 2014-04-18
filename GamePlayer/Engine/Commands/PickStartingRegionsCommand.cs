@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using GamePlayer.Game;
 
 namespace GamePlayer.Engine.Commands

@@ -25,8 +25,11 @@ namespace GamePlayer.Engine.Commands
                             game.Bot.BotPlayer.PlayerName, move.Source.Id, move.Target.Id, move.Armies);
                     break;
             }
-            
-            return new CommandResponse(CommandAction.SendData, response.ToString());
+
+            if (response.Length == 0)
+                response.Append("No moves");
+
+            return new CommandResponse(CommandAction.SendData, response.ToString().TrimEnd(new[]{','}));
         }
     }
 }

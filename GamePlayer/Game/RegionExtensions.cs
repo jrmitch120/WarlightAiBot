@@ -2,9 +2,9 @@
 {
     public static class RegionExtensions
     {
-        public static bool PossibleAttackTarget(this Region source, Region target)
+        public static double ArmyRatio(this Region source, Region target)
         {
-            return (source.Armies > target.Armies*1.5);
+            return (source.Armies / (double)target.Armies);
         }
     }
 }

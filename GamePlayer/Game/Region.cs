@@ -13,7 +13,7 @@ namespace GamePlayer.Game
 
         public Player Owner { get; set; }
         public int Armies { get; set; }
-        public int MaxAttackTransfer { get { return Armies - 1; } }
+        public int MaxAttackTransfer { get { return Armies - GameSettings.MinimumArmies; } }
         public bool IsVisible { get; set; }
 
         public readonly Regions Neighbors = new Regions();
@@ -37,15 +37,15 @@ namespace GamePlayer.Game
 
         public IEnumerable<Region> BoardingEnemies()
         {
-            return (Neighbors.Where(r => r.Owner != Owner && r.Owner != null && !Owner.Friendly));
+            return (Neighbors.Where(r => r.Owner != Owner && r.Owner != null && !r.Owner.Friendly));
         }
 
         public IEnumerable<Region> BoardingNeutral()
         {
-            return (Neighbors.Where(p => p.Owner == null));
+            return (Neighbors.Where(r => r.Owner == null));
         }
 
-        public IEnumerable<Region> BoardingAllUncontrolled()
+        public IEnumerable<Region> BoardingUncontrolled()
         {
             return (BoardingEnemies().Union(BoardingNeutral()));
         }
