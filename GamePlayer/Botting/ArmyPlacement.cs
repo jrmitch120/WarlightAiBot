@@ -17,6 +17,8 @@ namespace GamePlayer.Botting
         {
             Region = region;
             Armies = armies;
+
+            Region.Armies += armies;
         }
     }
 }

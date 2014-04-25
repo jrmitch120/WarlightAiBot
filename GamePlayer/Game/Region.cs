@@ -35,29 +35,29 @@ namespace GamePlayer.Game
             superRegion.Regions.Add(this);
         }
 
-        public int BoardingEnemyArmies()
+        public int BoardingEnemyArmies
         {
-            return (BoardingEnemies().Sum(r => r.Armies));
+            get { return (BoardingEnemies.Sum(r => r.Armies)); }
         }
 
-        public IEnumerable<Region> BoardingEnemies()
+        public IEnumerable<Region> BoardingEnemies
         {
-            return (Neighbors.Where(r => r.Owner != Owner && r.Owner != null && !r.Owner.Friendly));
+            get { return (Neighbors.Where(r => r.Owner != Owner && r.Owner != null && !r.Owner.Friendly)); }
         }
 
-        public IEnumerable<Region> BoardingNeutral()
+        public IEnumerable<Region> BoardingNeutral
         {
-            return (Neighbors.Where(r => r.Owner == null));
+            get { return (Neighbors.Where(r => r.Owner == null)); }
         }
 
-        public IEnumerable<Region> BoardingUncontrolled()
+        public IEnumerable<Region> BoardingUncontrolled
         {
-            return (BoardingEnemies().Union(BoardingNeutral()));
+            get { return (BoardingEnemies.Union(BoardingNeutral)); }
         }
 
-        public IEnumerable<SuperRegion> BoardingSuperRegions()
+        public IEnumerable<SuperRegion> BoardingSuperRegions
         {
-            return (Neighbors.Select(r => r.SuperRegion).Distinct());
+            get { return (Neighbors.Select(r => r.SuperRegion).Distinct()); }
         }
     }
 }

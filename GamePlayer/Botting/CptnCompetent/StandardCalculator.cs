@@ -35,18 +35,18 @@ namespace GamePlayer.Botting.CptnCompetent
         {
             var scores = new List<RegionScore<Deployment>>();
 
-            foreach (Region region in map.Regions)
+            foreach (Region region in map.Regions.OwnedBy(targetPlayer))
             {
                 var calc = new RegionScore<Deployment>(region, new Deployment());
 
-                calc.Scores.HostilityScore = region.BoardingEnemyArmies() * .1;
-                calc.Scores.ExpansionScore = 1/(double) region.BoardingUncontrolled().Count();
+                calc.Scores.HostilityScore = region.BoardingEnemyArmies * .1;
+                calc.Scores.ExpansionScore = region.BoardingUncontrolled.Any() ? 1/(double) region.BoardingUncontrolled.Count() : 0;
 
                 // Only give superregions a weight if we don't own it.  Expansive strategy for now.
                 if (region.SuperRegion.Owner != targetPlayer)
                 {
-                    calc.Scores.SuperRegionScore = region.SuperRegion.Regions.OwnedBy(targetPlayer).Count()/
-                                                   (double) region.SuperRegion.Regions.Count();
+                    calc.Scores.SuperRegionScore = region.SuperRegion.Regions.OwnedBy(targetPlayer).Count() /
+                                                   (double) region.SuperRegion.Regions.Count() * 1.5;
                 }
 
                 scores.Add(calc);

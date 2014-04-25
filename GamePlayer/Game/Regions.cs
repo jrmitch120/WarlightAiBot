@@ -8,7 +8,7 @@ namespace GamePlayer.Game
     {
         public IEnumerable<Region> OwnedBy(Player player)
         {
-            return (this.Where(p => p.Owner == player));
+            return (this.Where(r => r.Owner == player));
         }
 
         /// <summary>
@@ -28,8 +28,7 @@ namespace GamePlayer.Game
             var visited = new Dictionary<Region, Region>();
 
             q.Enqueue(starting);
-            visited.Add(starting, null);
-
+            
             while (q.Count > 0)
             {
                 var regionVertex = q.Dequeue();
@@ -51,7 +50,7 @@ namespace GamePlayer.Game
             {
                 Region node = destination;
 
-                while (node != null)
+                while (node != starting)
                 {
                     path.Insert(0,node);
                     node = visited[node];

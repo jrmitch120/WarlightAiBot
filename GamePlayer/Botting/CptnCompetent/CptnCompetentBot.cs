@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using GamePlayer.Botting.Common.Scoring;
 using GamePlayer.Game;
@@ -15,9 +16,50 @@ namespace GamePlayer.Botting.CptnCompetent
             _calc = new StandardCalculator();
         }
 
+        //public IEnumerable<AttackTransfer> AttackTransfer(Map map)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
         public IEnumerable<AttackTransfer> AttackTransfer(Map map)
         {
-            throw new NotImplementedException();
+            
+            List<Region> ourRegions = map.Regions.OwnedBy(BotPlayer).ToList();
+            var moves = new List<AttackTransfer>();
+
+            foreach (Region ourRegion in ourRegions)
+            {
+                foreach (Region uncontrolled in ourRegion.BoardingUncontrolled)
+                {
+                    // If Sgt Stupid's region has a neighbor that's not his, kick their ass if they're out gunned.
+                    if (ourRegion.ArmyRatio(uncontrolled) >= 1.5)
+                    {
+                        moves.Add(new AttackTransfer(ourRegion, uncontrolled, ourRegion.MaxAttackTransfer));
+                        break;
+                    }
+                }
+            }
+
+
+            // Transfer armies from sheltered regions to the closest battlefront
+            foreach (Region sheltered in ourRegions.Sheltered().Where(r => r.Armies > GameSettings.MinimumArmies))
+            {
+                
+                List<Region> shortestPath = null;
+
+                foreach (Region battleFront in ourRegions.OrderByDescending(r => r.BoardingEnemyArmies))
+                {
+                    var path = map.Regions.ShortestPath(sheltered, battleFront, BotPlayer).ToList();
+
+                    if (path.Any() && (shortestPath == null || path.Count() < shortestPath.Count()))
+                        shortestPath = path;
+                }
+
+                if (shortestPath != null && shortestPath.Any())
+                    moves.Add(new AttackTransfer(sheltered, shortestPath[0], sheltered.Armies - GameSettings.MinimumArmies));
+            }
+
+            return moves;
         }
 
         public Regions PickStartingRegions(Map map, Regions availableOptions)
@@ -43,7 +85,7 @@ namespace GamePlayer.Botting.CptnCompetent
 
             IEnumerable<RegionScore<Deployment>> top3 =
                 _calc.CalculateDeployments(map, BotPlayer)
-                .OrderBy(s => s.Scores.CumulativeScore)
+                .OrderByDescending(s => s.Scores.CumulativeScore)
                 .Take(3)
                 .ToList();
 

@@ -14,6 +14,27 @@ namespace GamePlayer.Botting.SgtStupid
             BotName = "Sgt. Stupid";
         }
 
+        public IEnumerable<AttackTransfer> AttackTransfer(Map map)
+        {
+            var moves = new List<AttackTransfer>();
+
+            // Sgt Stupid does not transfer.  He just attacks, attacks, attacks!!!!
+            foreach (Region ourRegion in map.Regions.OwnedBy(BotPlayer))
+            {
+                foreach (Region uncontrolled in ourRegion.BoardingUncontrolled)
+                {
+                    // If Sgt Stupid's region has a neighbor that's not his, kick their ass if they're out gunned.
+                    if (ourRegion.ArmyRatio(uncontrolled) >= 1.5)
+                    {
+                        moves.Add(new AttackTransfer(ourRegion, uncontrolled, ourRegion.MaxAttackTransfer));
+                        break;
+                    }
+                }
+            }
+
+            return moves;
+        }
+
         public Regions PickStartingRegions(Map map, Regions availableOptions)
         {
             int numberToPick = availableOptions.Count > GameSettings.StartingRegions ? GameSettings.StartingRegions : availableOptions.Count;
@@ -34,7 +55,7 @@ namespace GamePlayer.Botting.SgtStupid
 
             // Sgt. Stupid dumps everybody to the first region we own that's on a battle front.  No battlefront, means you won the game, but dump them on anything then.
             Region firstRegion =
-                map.Regions.FirstOrDefault(r => r.Owner == BotPlayer && r.BoardingUncontrolled().Any()) ??
+                map.Regions.FirstOrDefault(r => r.Owner == BotPlayer && r.BoardingUncontrolled.Any()) ??
                 map.Regions.First(r => r.Owner == BotPlayer);
 
             firstRegion.Armies += BotPlayer.DeployableArmies;
@@ -43,27 +64,6 @@ namespace GamePlayer.Botting.SgtStupid
             BotPlayer.DeployableArmies = 0;
 
             return armyPlacements;
-        }
-
-        public IEnumerable<AttackTransfer> AttackTransfer(Map map)
-        {
-            var moves = new List<AttackTransfer>();
-
-            // Sgt Stupid does not transfer.  He just attacks, attacks, attacks!!!!
-            foreach(Region ourRegion in map.Regions.OwnedBy(BotPlayer))
-            {
-                foreach (Region uncontrolled in ourRegion.BoardingUncontrolled())
-                {
-                    // If Sgt Stupid's region has a neighbor that's not his, kick their ass if they're out gunned.
-                    if (ourRegion.ArmyRatio(uncontrolled) >= 1.5)
-                    {
-                        moves.Add(new AttackTransfer(ourRegion, uncontrolled, ourRegion.MaxAttackTransfer));
-                        break;
-                    }
-                }
-            }
-
-            return moves;
         }
     }
 }

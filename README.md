@@ -18,3 +18,4 @@ be easy to understand and impliment.
 
 ###Current Bots
 * Sgt. Stupid - A basic bot that doesn't have much in the way of strategic thinking.
+* Cptn. Competent - The main bot right now.  Opperational, but under development.
