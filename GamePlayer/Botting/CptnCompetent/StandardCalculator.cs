@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GamePlayer.Botting.Common;
 using GamePlayer.Botting.Common.Scoring;
 using GamePlayer.Game;
 
@@ -34,7 +33,26 @@ namespace GamePlayer.Botting.CptnCompetent
 
         public IEnumerable<RegionScore<Deployment>> CalculateDeployments(Map map, Player targetPlayer)
         {
-            throw new NotImplementedException();
+            var scores = new List<RegionScore<Deployment>>();
+
+            foreach (Region region in map.Regions)
+            {
+                var calc = new RegionScore<Deployment>(region, new Deployment());
+
+                calc.Scores.HostilityScore = region.BoardingEnemyArmies() * .1;
+                calc.Scores.ExpansionScore = 1/(double) region.BoardingUncontrolled().Count();
+
+                // Only give superregions a weight if we don't own it.  Expansive strategy for now.
+                if (region.SuperRegion.Owner != targetPlayer)
+                {
+                    calc.Scores.SuperRegionScore = region.SuperRegion.Regions.OwnedBy(targetPlayer).Count()/
+                                                   (double) region.SuperRegion.Regions.Count();
+                }
+
+                scores.Add(calc);
+            }
+
+            return scores;
         }
 
         public IEnumerable<RegionScore<Desirability>> CalculateDesirability(Map map, Player targetPlayer)

@@ -35,6 +35,11 @@ namespace GamePlayer.Game
             superRegion.Regions.Add(this);
         }
 
+        public int BoardingEnemyArmies()
+        {
+            return (BoardingEnemies().Sum(r => r.Armies));
+        }
+
         public IEnumerable<Region> BoardingEnemies()
         {
             return (Neighbors.Where(r => r.Owner != Owner && r.Owner != null && !r.Owner.Friendly));

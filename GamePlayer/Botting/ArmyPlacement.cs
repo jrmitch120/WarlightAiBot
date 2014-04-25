@@ -11,7 +11,7 @@ namespace GamePlayer.Botting
         }
 
         public Region Region { get; private set; }
-        public int Armies { get; private set; }
+        public int Armies { get; set; }
 
         public ArmyPlacement(Region region, int armies)
         {

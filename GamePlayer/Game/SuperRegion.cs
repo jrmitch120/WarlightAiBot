@@ -16,6 +16,16 @@ namespace GamePlayer.Game
             get { return Regions.Where(r => r.IsBorderRegion); }
         }
 
+        public Player Owner
+        {
+            get
+            {
+                var players = Regions.Select(r => r.Owner).Distinct().ToList();
+
+                return players.Count() == 1 ? players[0] : null;
+            }
+        }
+
         public SuperRegion(int id, int bonus)
         {
             Id = id;

@@ -4,7 +4,7 @@ namespace GamePlayer.Botting.Common.Scoring
     {
         public double CumulativeScore
         {
-            get { return HostilityScore; }
+            get { return HostilityScore + ExpansionScore + SuperRegionScore; }
         }
 
         /// <summary>
@@ -13,13 +13,13 @@ namespace GamePlayer.Botting.Common.Scoring
         public double HostilityScore { get; set; }
 
         /// <summary>
-        /// How important it is to retain this region
-        /// </summary>
-        public double ImporanceScore { get; set; }
-
-        /// <summary>
         /// Can we expand from here to control more of the board?
         /// </summary>
         public double ExpansionScore { get; set; }
+
+        /// <summary>
+        /// Score based on number of region left to capture a region's SuperRegion
+        /// </summary>
+        public double SuperRegionScore { get; set; }
     }
 }
